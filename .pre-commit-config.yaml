@@ -1,0 +1,15 @@
+repos:
+  - repo: local
+    hooks:
+      - id: ruff-check
+        name: ruff check
+        entry: uv run ruff check
+        language: system
+        types: [python]
+        pass_filenames: true
+      - id: pytest
+        name: pytest (offline)
+        entry: env MOTOR_PRICING_SYNTHETIC=1 uv run pytest
+        language: system
+        pass_filenames: false
+        stages: [pre-push]
